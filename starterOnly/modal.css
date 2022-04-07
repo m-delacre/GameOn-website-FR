@@ -66,6 +66,7 @@ img {
 
 .topnav .icon {
   display: none;
+  color: red;
 }
 
 @media screen and (max-width: 768px) {
@@ -169,6 +170,18 @@ main {
   background-color: rgba(26, 39, 156, 0.4);
 }
 
+.bground-merci {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  background-color: rgba(26, 39, 156, 0.4);
+}
+
 .content {
   margin: 5% auto;
   width: 100%;
@@ -232,6 +245,8 @@ input[data-error]::after {
     font-size: 0.4em;
     color: red;
 } */
+
+
 .checkbox-label,
 .checkbox2-label {
   position: relative;
@@ -272,6 +287,7 @@ input[data-error]::after {
 .checkbox-input {
   display: none;
 }
+
 .checkbox-input:checked + .checkbox-label .checkbox-icon::after,
 .checkbox-input:checked + .checkbox2-label .checkbox-icon::after {
   opacity: 1;
@@ -321,6 +337,33 @@ input[data-error]::after {
 .close:after {
   transform: rotate(-45deg);
 }
+
+.close-merci {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  width: 32px;
+  height: 32px;
+  opacity: 1;
+  cursor: pointer;
+  transform: scale(0.7);
+}
+.close-merci:before,
+.close-merci:after {
+  position: absolute;
+  left: 15px;
+  content: " ";
+  height: 33px;
+  width: 3px;
+  background-color: #fff;
+}
+.close-merci:before {
+  transform: rotate(45deg);
+}
+.close-merci:after {
+  transform: rotate(-45deg);
+}
+
 .btn-submit,
 .btn-signup {
   background: #fe142f;
@@ -405,10 +448,10 @@ input[data-error]::after {
   font-size: 16px;
 }
 .hero-section {
-  min-height: 93vh;
   border-radius: 10px;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: 625px;
   overflow: hidden;
   box-shadow: 0 2px 7px 2px rgba(0, 0, 0, 0.2);
   margin-bottom: 10px;
@@ -474,7 +517,6 @@ input[data-error]::after {
   display: none;
 }
 footer {
-  padding-left: 2vw;
   padding-right: 2vw;
   margin: 0 20px;
 }
@@ -527,3 +569,19 @@ footer {
   }
 }
 
+.error {
+  width  : 100%;
+  padding: 0;
+  
+
+  font-size: 50%;
+  color: red;
+  border-radius: 0 0 5px 5px;
+
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.error.active {
+  padding: 0.3em;
+}
