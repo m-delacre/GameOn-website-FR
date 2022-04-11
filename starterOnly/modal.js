@@ -14,14 +14,16 @@ const formData = document.querySelectorAll(".formData");
 const crossBtn = document.querySelectorAll(".close");
 const crossBtnMerci = document.querySelectorAll(".close-merci");
 const btnEnvoyer = document.getElementById("envoyer");
+const btnFermer = document.getElementById("btnFermer");
 const bgMerci = document.querySelector(".bground-merci");
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 crossBtn.forEach((btn) => btn.addEventListener("click", closeModal));
 crossBtnMerci.forEach((btn) => btn.addEventListener("click", closeModalMerci));
+btnFermer.addEventListener("click", closeModalMerci);
 
-btnEnvoyer.addEventListener("click", merci);
+//btnEnvoyer.addEventListener("click", merci);
 
 function merci(){
   bgMerci.style.display = "block";
@@ -32,12 +34,12 @@ function launchModal() {
   modalbg.style.display = "block";
 }
 
-//cacher le modal
+//fermer le modal
 function closeModal(){
   modalbg.style.display = "none";
 }
 
-//cacher le modal merci
+//fermer le modal merci
 function closeModalMerci(){
   bgMerci.style.display = "none";
 }
@@ -54,7 +56,7 @@ let boxObligatoire = document.getElementById('checkbox1');
 let birthdate = document.getElementById('birthdate');
 
 
-//les error
+//les variables error
 let errorPre = document.getElementById('errorPre');
 let errorNom = document.getElementById('errorNom');
 let errorVille = document.getElementById('errorVille');
@@ -68,15 +70,21 @@ let nameRegex = /^[a-zA-Z-\s]+$/
 
 //validation du formulaire
 formulaire.addEventListener('submit', function (event) {
+
+  //reset error
+  errorPre.innerHTML = "";
+  errorNom.innerHTML = "";
+  errorVille.innerHTML = "";
+  errorCheck.innerHTML = "";
+  errorDate.innerHTML = "";
+
   if(prenom.value.length < 2){
     errorPre.innerHTML = "Veuillez entrer 2 caractères ou plus pour le champ du nom.";
-    prenom.style.border = "1px solid red";
     console.log('number of letter error');
     event.preventDefault();
   }
   else if(nom.value.length < 2){
     errorNom.innerHTML = "Veuillez entrer 2 caractères ou plus pour le champ du nom.";
-    nom.style.border = "1px solid red";
     console.log('number of letter error');
     event.preventDefault();
   }
@@ -96,6 +104,10 @@ formulaire.addEventListener('submit', function (event) {
     event.preventDefault();
   }
   else{
-    formulaire.submit();
+    //formulaire.submit();
+    formulaire.reset();
+    modalbg.style.display = "none";
+    bgMerci.style.display = "block";
+    event.preventDefault();
   }
 });

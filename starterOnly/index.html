@@ -14,12 +14,10 @@
   <body>
     <div class="topnav" id="myTopnav">
       <div class="header-logo">
-      <img alt="logo" src="Logo.png" width="auto" height="auto" />
+      <img alt="logo" src="Logo.png" id="logo"/>
     </div>
     <div class="main-navbar">
-      
-      <a href="#" class="active"><span>Accueil</span></a>
-      <a href="#"><span>Détails de l'évènement</span></a>
+      <a href="#" class="active"><span>Détails de l'évènement</span></a>
       <a href="#"><span>À propos</span></a>
       <a href="#"><span>Contact</span></a>
       <a href="#"><span>Évènements passés</span></a>
@@ -28,7 +26,6 @@
       </a>
     </div>
     </div>
-  </div>
     <main>
       <div class="hero-section">
         <div class="hero-content">
@@ -56,7 +53,7 @@
         <div class="content">
           <span class="close"></span>
           <div class="modal-body">
-            <form name="reserve" action="index.html" method="get" id="formulaire">
+            <form name="reserve" action="#" method="post" id="formulaire">
 
               <!--Prénom-->
               <div class="formData">
@@ -89,7 +86,7 @@
               <!--Nombre de tournois -->
               <div class="formData">
                 <label for="quantity">À combien de tournois GameOn avez-vous déjà participé ?</label><br>
-                <input type="number" class="text-control" id="quantity" name="quantity" pattern="[0-999]" min="0" max="999" required>
+                <input type="number" class="text-control" id="quantity" name="quantity" min="0" max="999" required>
               </div>
 
               <!--Choix de la ville du tournoi -->
@@ -140,7 +137,7 @@
                 <span class="error" aria-live="polite" id="errorCheck"></span>
               </div>
               <!--Btn valider-->
-              <input class="btn-submit" type="submit" class="button" value="C'est parti" id="envoyer"/>
+              <input class="btn-submit button" type="submit" value="C'est parti" id="envoyer"/>
             </form>
           </div>
         </div>
@@ -149,10 +146,13 @@
       <div class="bground-merci">
         <div class="content">
           <span class="close-merci"></span>
-          <div class="modal-body">
+          <div class="modal-body-merci">
             <div class="remerciment">
               <p>Merci Pour</p>
               <p>Votre inscription</p>
+            </div>
+            <div class="btnClose">
+              <button class="btn-submit" id="btnFermer">Fermer</button>
             </div>
           </div>
         </div>
