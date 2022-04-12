@@ -44,9 +44,6 @@ function closeModalMerci(){
   bgMerci.style.display = "none";
 }
 
-
-//validation du module
-
 //variables
 let formulaire = document.getElementById('formulaire');
 let email = document.getElementById('email');
@@ -55,59 +52,115 @@ let nom = document.getElementById('last');
 let boxObligatoire = document.getElementById('checkbox1');
 let birthdate = document.getElementById('birthdate');
 
-
-//les variables error
-let errorPre = document.getElementById('errorPre');
-let errorNom = document.getElementById('errorNom');
-let errorVille = document.getElementById('errorVille');
-let errorCheck = document.getElementById('errorCheck');
-let errorDate = document.getElementById('errorDate');
-
-
-//regex
+//variables regex
 let nameRegex = /^[a-zA-Z-\s]+$/
+let mailRegex = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/
 
 
-//validation du formulaire
+//functions de vérifications
+
+//verif prenom
+function checkPrenom(){
+  if(prenom.value.length < 2 || !prenom.value.match(nameRegex)){
+    prenom.parentElement.setAttribute('data-error-visible', 'true');
+    prenom.style.border = '2px solid #e54858';
+    return false;
+  }
+  prenom.style.border = '0px';
+  prenom.parentElement.setAttribute('data-error-visible', 'false');
+  return  true;
+}
+
+//verif nom
+function checkNom(){
+  if(nom.value.length < 2 || !nom.value.match(nameRegex)){
+    nom.parentElement.setAttribute('data-error-visible', 'true');
+    nom.style.border = '2px solid #e54858';
+    return false;
+  }
+  nom.style.border = '0px';
+  nom.parentElement.setAttribute('data-error-visible', 'false');
+  return  true;
+}
+
+//verif mail
+function checkMail(){
+  if(email.value.trim() === "" || !email.value.match(mailRegex)){
+    email.parentElement.setAttribute('data-error-visible', 'true');
+    email.style.border = '2px solid #e54858';
+    return false;
+  }
+  email.style.border = '0px';
+  email.parentElement.setAttribute('data-error-visible', 'false');
+  return  true;
+}
+
+//verif date de naissance
+function checkBirthdate(){
+  if(!birthdate.value){
+    birthdate.parentElement.setAttribute('data-error-visible', 'true');
+    birthdate.style.border = '2px solid #e54858';
+    return false;
+  }
+  birthdate.parentElement.setAttribute('data-error-visible', 'false');
+  return  true;
+}
+
+//verif si une ville est choisie
+function checkRadio(){
+  if(document.querySelector('input[name="location"]:checked') == null) {
+    document.querySelector('input[name="location"]').parentElement.setAttribute('data-error-visible', 'true');
+    document.querySelector('input[name="location"]').style.border = '2px solid #e54858';
+    return false;
+  }
+  document.querySelector('input[name="location"]').parentElement.setAttribute('data-error-visible', 'false');
+  return true;
+}
+
+//verif si cocher les les termes et conditions
+function checkBox(){
+  if(!boxObligatoire.checked){
+    boxObligatoire.parentElement.setAttribute('data-error-visible', 'true');
+    boxObligatoire.style.border = '2px solid #e54858';
+    return false;
+  }
+  boxObligatoire.parentElement.setAttribute('data-error-visible', 'false');
+  return true;
+}
+
+//valide si tout est bien renseigné 
+function validationForm(){
+  if(checkPrenom()===true && checkNom()===true && checkMail()===true && checkBirthdate()===true && checkRadio()===true && checkBox()===true){
+    return true;
+  }
+  return false;
+}
+
+//verif chaque champs un à un
+function verifChamps() {
+  checkPrenom()
+  checkNom()
+  checkMail()
+  checkBirthdate()
+  checkRadio()
+  checkBox()
+}
+
+//affiche le message 'merci de votre inscription'
+function envoieValider(){
+  modalbg.style.display = "none";
+  bgMerci.style.display = "block";
+}
+
+//au clique sur envoyé
 formulaire.addEventListener('submit', function (event) {
+  event.preventDefault();
 
-  //reset error
-  errorPre.innerHTML = "";
-  errorNom.innerHTML = "";
-  errorVille.innerHTML = "";
-  errorCheck.innerHTML = "";
-  errorDate.innerHTML = "";
-
-  if(prenom.value.length < 2){
-    errorPre.innerHTML = "Veuillez entrer 2 caractères ou plus pour le champ du nom.";
-    console.log('number of letter error');
-    event.preventDefault();
-  }
-  else if(nom.value.length < 2){
-    errorNom.innerHTML = "Veuillez entrer 2 caractères ou plus pour le champ du nom.";
-    console.log('number of letter error');
-    event.preventDefault();
-  }
-  else if(!birthdate.value){
-    errorDate.innerHTML = "Vous devez entrer votre date de naissance.";
-    console.log('date error');
-    event.preventDefault();
-  }
-  else if(document.querySelector('input[name="location"]:checked') == null) {
-    errorVille.innerHTML = "Vous devez choisir une option.";
-    console.log('radio button pas choisi');
-    event.preventDefault();
-  }
-  else if(!boxObligatoire.checked){
-    errorCheck.innerHTML = "Vous devez vérifier que vous acceptez les termes et conditions."
-    console.log('checkbox error');
-    event.preventDefault();
-  }
-  else{
-    //formulaire.submit();
+  if(validationForm()===true){
+    envoieValider();
     formulaire.reset();
-    modalbg.style.display = "none";
-    bgMerci.style.display = "block";
-    event.preventDefault();
+  }else{
+    verifChamps();
   }
+
 });

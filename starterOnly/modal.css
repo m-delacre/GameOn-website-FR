@@ -115,7 +115,7 @@ main {
   color: black;
   padding-top: 0.5vw;
   padding-left: 2vw;
-  padding-right: 2vw;
+  padding-right: 4vw;
   margin: 1px 20px 15px;
   border-radius: 2rem;
   text-align: justify;
@@ -257,7 +257,7 @@ input {
   display: block;
   margin-top: 7px;
   margin-bottom: 7px;
-  text-align: right;
+  text-align: left;
   line-height: 0.3;
   opacity: 0;
   transition: 0.3s;
