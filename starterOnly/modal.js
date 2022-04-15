@@ -51,7 +51,7 @@ let prenom = document.getElementById('first');
 let nom = document.getElementById('last');
 let boxObligatoire = document.getElementById('checkbox1');
 let birthdate = document.getElementById('birthdate');
-
+let quantity = document.getElementById('quantity');
 //variables regex
 let nameRegex = /^[a-zA-Z-\s]+$/
 let mailRegex = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/
@@ -102,7 +102,20 @@ function checkBirthdate(){
     birthdate.style.border = '2px solid #e54858';
     return false;
   }
+  birthdate.style.border = '0px';
   birthdate.parentElement.setAttribute('data-error-visible', 'false');
+  return  true;
+}
+
+//verif le nombre de tournois participé
+function checkQuantity(){
+  if(quantity.value === ""){
+    quantity.parentElement.setAttribute('data-error-visible', 'true');
+    quantity.style.border = '2px solid #e54858';
+    return false;
+  }
+  quantity.style.border = '0px';
+  quantity.parentElement.setAttribute('data-error-visible', 'false');
   return  true;
 }
 
@@ -130,7 +143,7 @@ function checkBox(){
 
 //valide si tout est bien renseigné 
 function validationForm(){
-  if(checkPrenom()===true && checkNom()===true && checkMail()===true && checkBirthdate()===true && checkRadio()===true && checkBox()===true){
+  if(checkPrenom()===true && checkNom()===true && checkMail()===true && checkBirthdate()===true && checkQuantity()===true && checkRadio()===true && checkBox()===true){
     return true;
   }
   return false;
@@ -142,6 +155,7 @@ function verifChamps() {
   checkNom()
   checkMail()
   checkBirthdate()
+  checkQuantity()
   checkRadio()
   checkBox()
 }

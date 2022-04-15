@@ -77,13 +77,12 @@
               <div class="formData" data-error="Vous devez entrer votre date de naissance." data-error-visible="false">
                 <label for="birthdate">Date de naissance</label><br>
                 <input class="text-control" type="date" id="birthdate" name="birthdate"/><br>
-                <span class="error" aria-live="polite" id="errorDate"></span>
               </div>
 
               <!--Nombre de tournois -->
-              <div class="formData">
+              <div class="formData" data-error="Vous devez entrer un le nombre de tournois auquel vous avez déjà participé." data-error-visible="false">
                 <label for="quantity">À combien de tournois GameOn avez-vous déjà participé ?</label><br>
-                <input type="number" class="text-control" id="quantity" name="quantity" min="0" max="999" required>
+                <input type="number" class="text-control" id="quantity" name="quantity" min="0" max="999">
               </div>
 
               <!--Choix de la ville du tournoi -->
@@ -113,7 +112,6 @@
                 <label class="checkbox-label" for="location6">
                   <span class="checkbox-icon"></span>Portland</label> 
                 </br>
-                <span class="error" aria-live="polite" id="errorVille"></span>
               </div>
 
               <!--Checkbox-->
@@ -125,6 +123,8 @@
                   J'ai lu et accepté les conditions d'utilisation.
                 </label>
                 <br>
+              </div>
+              <div class="formData">
                 <!--Newsletter, pas obligatoire-->
                 <input class="checkbox-input" type="checkbox" id="checkbox2"/>
                 <label class="checkbox2-label" for="checkbox2">
