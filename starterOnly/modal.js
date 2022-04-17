@@ -19,15 +19,15 @@ const bgMerci = document.querySelector(".bground-merci");
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
+//mes ajouts
+//fermer le modal par la croix
 crossBtn.forEach((btn) => btn.addEventListener("click", closeModal));
+//fermer le modal de valdation par la croix
 crossBtnMerci.forEach((btn) => btn.addEventListener("click", closeModalMerci));
+//fermer le modal de valdation par le boutton fermer
 btnFermer.addEventListener("click", closeModalMerci);
 
-//btnEnvoyer.addEventListener("click", merci);
-
-function merci(){
-  bgMerci.style.display = "block";
-}
+//fonctions
 
 // launch modal form
 function launchModal() {
